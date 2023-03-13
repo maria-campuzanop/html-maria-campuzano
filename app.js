@@ -36,4 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
       cuadricula.appendChild(carta);
     }
   }
+
+  //----------------- lecture_04 ----------------------------------//
+
+  function voltearCarta() {
+    var cardId = this.getAttribute("data-id");
+    cartasEscogidas.push(cardAdj[cardId].name);
+    cartasEscogidasId.push(cardId);
+    this.setAttribute("src", cardAdj[cardId].img);
+    if (cartasEscogidas.length === 2) {
+      setTimeout(verificarPareja, 1000);
+    }
+  }
+
+  crearTablero();
 });
