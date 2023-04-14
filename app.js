@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { name: "Revoltosito.jpg", img: "images/Revoltosito.jpg" },
     { name: "Sincerosita.jpg", img: "images/Sincerosita.jpg" },
     { name: "suerte.jpg", img: "images/suerte.jpg" },
-    { name: "Alegrosita.jpg", img: "images/Alegrosita.jpg.png" },
-    { name: "Armoniosita.jpg", img: "images/Armoniosita.jpg.png" },
-    { name: "Divertosito.jpg", img: "images/Divertosito.jpg.png" },
+    { name: "Alegrosita.jpg", img: "images/Alegrosita.jpg" },
+    { name: "Armoniosita.jpg", img: "images/Armoniosita.jpg" },
+    { name: "Divertosito.jpg", img: "images/Divertosito.jpg" },
     { name: "Revoltosito.jpg", img: "images/Revoltosito.jpg" },
     { name: "Sincerosita.jpg", img: "images/Sincerosita.jpg" },
     { name: "suerte.jpg", img: "images/suerte.jpg" }
@@ -34,6 +34,39 @@ document.addEventListener("DOMContentLoaded", () => {
       carta.addEventListener("click", voltearCarta);
 
       cuadricula.appendChild(carta);
+    }
+  }
+
+  //----------------- lecture_04 ----------------------------------//
+
+  function verificarPareja() {
+    var cards = document.querySelectorAll("img");
+    const opcionUnoId = cartasEscogidasId[0];
+    const opcionDosId = cartasEscogidasId[1];
+
+    if (opcionUnoId === opcionDosId) {
+      cards[opcionUnoId].setAttribute("src", "images/reverso.png");
+      cards[opcionDosId].setAttribute("src", "images/reverso.png");
+      alert(";Diste click a la misma imagen!");
+    } else if (cartasEscogidas[0] === cartasEscogidas[1]) {
+      alert(";correcto!");
+      cards[opcionUnoId].setAttribute("src", "images/blank.png");
+      cards[opcionDosId].setAttribute("src", "imageș/blank.png");
+      cards[opcionUnoId].removeEventListener("click", voltearCarta);
+      cards[opcionDosId].removeEventlistener("click", voltearCarta);
+      cartasGanadas.push(cartasEscogidas);
+    } else {
+      cards[opcionUnoId].setAttribute("src", "images/reverso.png");
+      cards[opcionDosId].setAttribute("src", "images/reverso.png");
+      alert("iIntenta de nuevo!");
+    }
+    cartasEscogidas = [];
+    cartasEscogidasId = [];
+
+    resultado.textContent = cartasGanadas.length;
+
+    if (cartasGanadas.length === cardAdj.length / 2) {
+      resultado.textContent = "!Felicidades, encontraste todos los pares!";
     }
   }
 
